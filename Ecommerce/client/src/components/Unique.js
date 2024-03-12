@@ -47,7 +47,9 @@ const style2 = {
     justifyContent: "center",
     p: 4,
 };
-function Articleunique({ categorie, sous_categorie, id }) {
+function Articleunique() {
+
+    const { categorie, sub_categorie, id } = useParams();
     const [multipleCharacteristics, setMultipleCharacteristics] = useState(undefined);
     const [articles, setArticles] = useState([]);
     const [open, setOpen] = useState(false);
@@ -68,9 +70,8 @@ function Articleunique({ categorie, sous_categorie, id }) {
     const [fopen, setFopen] = useState(false);
     const handleClose = () => setFopen(false);
     const [comments, setComments] = useState([]);
-    const params = useParams();
     const [charInSelect, setCharInSelect] = useState("")
-    const articleId = params.id;
+    const articleId = id;
 
     function isAvailable2(quantite = 0) {
         if (quantite > 0) {
@@ -220,7 +221,7 @@ const handleChangeChar = (e) => {
     }
     const fetchUserData = async () => {
         await fetch(
-            `http://localhost:8000/api/articles/search/${categorie}/${sous_categorie}/${id}`
+            `http://localhost:8000/api/articles/search/${categorie}/${sub_categorie}/${id}`
         )
             .then((response) => {
                 return response.json();
@@ -260,7 +261,7 @@ const handleChangeChar = (e) => {
     }
 
     const getUrl = (event) => {
-        return navigate(`/paymentForm/${categorie}/${sous_categorie}/${id}`);
+        return navigate(`/paymentForm/${categorie}/${sub_categorie}/${id}`);
     };
     function handleChangeQuantity(e, stock) {
         if (Number(e.target.value) > stock) {
@@ -473,7 +474,7 @@ console.log(currentArticle)
                                 marginRight: "1em",
                                 fontSize: "0.9em",
                             }}
-                            href={`http://localhost:3000/login?categorie=${categorie}&sous_categorie=${sous_categorie}&id=${id}`}
+                            href={`http://localhost:3000/login?categorie=${categorie}&sous_categorie=${sub_categorie}&id=${id}`}
                         >
                             Me connecter
                         </Button>
@@ -484,7 +485,7 @@ console.log(currentArticle)
                                 color: "black",
                                 marginRight: "1em",
                             }}
-                            href={`http://localhost:3000/inscription?categorie=${categorie}&sous_categorie=${sous_categorie}&id=${id}`}
+                            href={`http://localhost:3000/inscription?categorie=${categorie}&sous_categorie=${sub_categorie}&id=${id}`}
                         >
                             S'inscrire
                         </Button>

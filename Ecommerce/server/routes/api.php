@@ -88,6 +88,7 @@ Route::get('gozizi_test', [ArticleController::class, 'METHODEDEFILSDEPUTE']);
 Route::get('ratingavg', [ArticleController::class, 'averagerating']);
 Route::get('nomserieux/{id}', [ArticleController::class, 'methodetotalementraisonnable']);
 Route::get('articles/{id}', [ArticleController::class, 'show']);
+Route::get('images', [ArticleController::class, 'getImages']);
 // --------------------------------
 
 
