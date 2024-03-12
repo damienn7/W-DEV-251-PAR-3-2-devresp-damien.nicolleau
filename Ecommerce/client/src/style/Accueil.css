@@ -1,0 +1,69 @@
+.foutre {
+    width: 100%;
+    height: fit-content;
+
+}
+div.MuiBox-root.css-tvxkav {
+    width: 100%;
+    height: 100%; 
+}
+div.carouselini.css-ohwg9z {
+    width: 100%;
+    height: 100%; 
+}
+.button.MuiButtonBase {
+    width: 100%;
+    height: 100%; 
+}
+div.MuiBox-root.css-8wulhr {
+    width: 100%;
+    height: 100%; 
+}
+div.MuiStack-root.css-1sazv7p-MuiStack-root {
+    width: 100%;
+    height: 100%;
+}
+.button.MuiStack-root {
+    width: 100%;
+    height: 100%; 
+}
+div.css {
+    width: 100%;
+    height: 100%; 
+}
+.greenbox,
+.redbox {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    float: right;
+}
+
+.greenbox{
+    background-color: green;
+}
+
+.redbox{
+    background-color: red;
+}
+
+.lepainperdu:hover{
+    background-color: rgba(9, 154, 238, 0.209);
+    cursor: pointer;
+}
+
+.search__image {
+    max-width: 50px;
+}
+
+.search__suggestion {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1rem 0;
+}
+
+.search__suggestion:hover {
+    background-color: rgb(138, 138, 231);
+    color:white;
+}
+
