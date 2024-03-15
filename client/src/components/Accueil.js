@@ -16,6 +16,7 @@ import BreadcrumbsComponent from "./breadcrumbs";
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import LoadingImages from './LoadingImages.jsx';
+
 // import {result,noItems,price,countItem,orderId,articlesPanier,setResult,setNoItems,setPrice,setCountItem,setOrderId,setArticlesPanier,calcPrice,calcQuantity} from './StatePanier';
 
 
@@ -84,7 +85,6 @@ const calcQuantity = (id) => {
       
       <Box padding={2}/>
       <Footer />
-
     </div>
   );
 }

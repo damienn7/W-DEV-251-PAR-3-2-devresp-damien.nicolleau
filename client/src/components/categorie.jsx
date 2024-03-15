@@ -6,7 +6,6 @@ import BreadcrumbsComponent from "./breadcrumbs";
 import Article from "./Article";
 import React, { useState, useEffect } from "react";
 
-
 export default function Category() {
   const [getData, setData] = useState([]);
 
@@ -48,9 +47,7 @@ export default function Category() {
 
   const fetchDatas = () => {
     axios
-    .get(
-      `http://localhost:8000/api/articles/search/${categorie}/${sub_categorie}`
-    )
+    .get(`http://localhost:8000/api/articles/search/${categorie}/${sub_categorie}`)
     .then((axiosReponse) => {
       return axiosReponse.data
     })

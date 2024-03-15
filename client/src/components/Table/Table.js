@@ -14,13 +14,12 @@ import { TextField } from '@mui/material';
 import axios from 'axios';
 import LoadingImages from '../LoadingImages';
 
-
-
 export default function BasicTable({ articlesPanier, setArticlesPanier, calcQuantity, orderId, setOrderId, calcPrice, countItem, setCountItem, price, setPrice, noItems, setNoItems, result, setResult }) {
   const [articles, setArticles] = useState([])
   const [quantity, setQuantity] = useState(1)
   const [hoveredArticle, setHoveredArticle] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
   const [loadingImages, setLoadingImages] = useState([]);
 
   let i = 0;
@@ -48,7 +47,7 @@ export default function BasicTable({ articlesPanier, setArticlesPanier, calcQuan
   useEffect(() => {
     fetchUserData()
     fetchImages();
-  }, [])
+  }
 
   // const fetchRating = (id_article) => {
   //   fetch(`http://127.0.0.1:8000/api/ratingavg/${id_article}`)
@@ -175,9 +174,6 @@ export default function BasicTable({ articlesPanier, setArticlesPanier, calcQuan
     }
   }
   return (
-    <TableContainer component={Paper}>
-    <LoadingImages data={loadingImages} />
-
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>

@@ -46,9 +46,8 @@ const style2 = {
     flexDirection: "column",
     justifyContent: "center",
     p: 4,
-};
+};  
 function Articleunique() {
-
     const { categorie, sub_categorie, id } = useParams();
     const [multipleCharacteristics, setMultipleCharacteristics] = useState(undefined);
     const [articles, setArticles] = useState([]);
@@ -70,6 +69,7 @@ function Articleunique() {
     const [fopen, setFopen] = useState(false);
     const handleClose = () => setFopen(false);
     const [comments, setComments] = useState([]);
+  
     const [charInSelect, setCharInSelect] = useState("")
     const articleId = id;
 
