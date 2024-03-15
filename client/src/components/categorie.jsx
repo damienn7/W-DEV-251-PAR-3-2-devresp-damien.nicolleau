@@ -1,17 +1,17 @@
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import PrimarySearchAppBar from "./Header";
 import StickyFooter from "./Footer";
 import BreadcrumbsComponent from "./breadcrumbs";
 import Article from "./Article";
 import React, { useState, useEffect } from "react";
 
-
-export default function   Category(props) {
+export default function Category() {
   const [getData, setData] = useState([]);
 
   const location = useLocation();
 
+  const { categorie , sub_categorie} = useParams();
   const [result, setResult] = React.useState(0);
   const [noItems, setNoItems] = React.useState("");
   const [price, setPrice] = React.useState(0);
@@ -47,9 +47,7 @@ export default function   Category(props) {
 
   const fetchDatas = () => {
     axios
-    .get(
-      `http://localhost:8000/api/articles/search/${props.categorie}/${props.sous_categorie}`
-    )
+    .get(`http://localhost:8000/api/articles/search/${categorie}/${sub_categorie}`)
     .then((axiosReponse) => {
       return axiosReponse.data
     })

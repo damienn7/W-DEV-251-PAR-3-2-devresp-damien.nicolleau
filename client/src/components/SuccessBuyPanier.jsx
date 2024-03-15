@@ -15,8 +15,11 @@ import {
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import html2pdf from "html2pdf.js";
 
+import { useParams } from "react-router-dom";
 
-export default function SuccessBuyPanier({ id }) {
+
+export default function SuccessBuyPanier() {
+  const { id } = useParams();
   const [panier, setArticleInPanier] = useState([]);
   const [delivery_address, setAddress] = useState("");
   const [country, setCountry] = useState("");
@@ -27,12 +30,11 @@ export default function SuccessBuyPanier({ id }) {
   const [countryprice, setCountryPrice] = useState(0);
 
 
-
-
   const renderPanier = () => {
     // Define axios calls
-    const orderDetailsRequest = axios.get(`http://localhost:8000/api/order/${id}`);
-    const orderItemsRequest = axios.get(`http://localhost:8000/api/order_item/by/${id}`);
+    const orderDetailsRequest = axios.get(`http://localhost:8000/api/order/${id.split('/')[2]}`);
+    const orderItemsRequest = axios.get(`http://localhost:8000/api/order_item/by/${id.split('/')[2]}`);
+
     
     // Execute both requests concurrently
     Promise.all([orderDetailsRequest, orderItemsRequest])

@@ -1,8 +1,10 @@
+import { useParams } from 'react-router-dom';
 import '../style/payment.css';
 import jwt_decode from "jwt-decode";
 
-function Payment(props) {
-  let decodeJson = jwt_decode(props.token)
+function Payment() {
+  const { token } = useParams();
+  let decodeJson = jwt_decode(token.split('/')[2])
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>

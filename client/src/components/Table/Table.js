@@ -12,13 +12,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMedal, faFire } from "@fortawesome/free-solid-svg-icons";
 import { TextField } from '@mui/material';
 import axios from 'axios';
-
+import LoadingImages from '../LoadingImages';
 
 export default function BasicTable({ articlesPanier, setArticlesPanier, calcQuantity, orderId, setOrderId, calcPrice, countItem, setCountItem, price, setPrice, noItems, setNoItems, result, setResult }) {
   const [articles, setArticles] = useState([])
   const [quantity, setQuantity] = useState(1)
   const [hoveredArticle, setHoveredArticle] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const [loadingImages, setLoadingImages] = useState([]);
 
   let i = 0;
 
@@ -33,9 +35,19 @@ export default function BasicTable({ articlesPanier, setArticlesPanier, calcQuan
       })
   }
 
+  const fetchImages = () => {
+    fetch("http://127.0.0.1:8000/api/images")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setLoadingImages(data)
+      })
+  }
   useEffect(() => {
     fetchUserData()
-  }, [])
+    fetchImages();
+  }
 
   // const fetchRating = (id_article) => {
   //   fetch(`http://127.0.0.1:8000/api/ratingavg/${id_article}`)
@@ -162,8 +174,6 @@ export default function BasicTable({ articlesPanier, setArticlesPanier, calcQuan
     }
   }
   return (
-
-    <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -182,16 +192,15 @@ export default function BasicTable({ articlesPanier, setArticlesPanier, calcQuan
               key={article.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               className='lepainperdu'
-              onMouseEnter={() => setHoveredArticle(article)}
               onMouseMove={(e) => {
                 setMousePosition({ x: e.clientX, y: e.clientY });
               }}
-              onMouseLeave={() => {
-                setHoveredArticle(null);
-                setMousePosition({ x: 0, y: 0 });
-              }}
+              // onMouseLeave={() => {
+              //   setHoveredArticle(null);
+              //   setMousePosition({ x: 0, y: 0 });
+              // }}
             >
-              <TableCell component="th" onClick={() => window.location.href = `/articles/search/${article.category}/${article.sub_category}/${article.idefix}`} scope="row">{istop3(article.name)}</TableCell>
+              <TableCell onMouseEnter={() => setHoveredArticle(article)} onMouseLeave={() => setHoveredArticle(null)} component="th" onClick={() => window.location.href = `/articles/search/${article.category}/${article.sub_category}/${article.idefix}`} scope="row">{istop3(article.name)}</TableCell>
               <TableCell align="right" onClick={() => window.location.href = `/articles/search/${article.category}/${article.sub_category}/${article.idefix}`}>{article.sub_category}</TableCell>
               <TableCell align="right" onClick={() => window.location.href = `/articles/search/${article.category}/${article.sub_category}/${article.idefix}`}>
                 {/* {random()}/5 */}
@@ -222,7 +231,7 @@ export default function BasicTable({ articlesPanier, setArticlesPanier, calcQuan
                 }}
               >
                 {hoveredArticle && (
-                  <img src={hoveredArticle.image} alt={hoveredArticle.name} style={{ width: '300px', height: 'auto' }} />
+                  <img src={hoveredArticle.image} alt={hoveredArticle.name} loading="lazy" style={{ width: '300px', height: 'auto' }} />
                 )}
               </div>
     </TableContainer>

@@ -186,4 +186,9 @@ public function peripheriquenordsortieA3(Request $request){
         ->select(DB::raw('AVG(rating) as test'))
         ->get();
 }
+    public function getImages(){
+        return DB::table('items')
+        ->select('image')     
+        ->get();
+    }
 }

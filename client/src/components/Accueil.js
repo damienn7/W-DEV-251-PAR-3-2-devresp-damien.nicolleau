@@ -15,6 +15,8 @@ import { useLocation } from "react-router-dom";
 import BreadcrumbsComponent from "./breadcrumbs";
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
+import LoadingImages from './LoadingImages.jsx';
+
 // import {result,noItems,price,countItem,orderId,articlesPanier,setResult,setNoItems,setPrice,setCountItem,setOrderId,setArticlesPanier,calcPrice,calcQuantity} from './StatePanier';
 
 
@@ -27,6 +29,7 @@ const [price, setPrice] = React.useState(0);
 const [countItem, setCountItem] = React.useState(0);
 const [orderId, setOrderId] = React.useState(0);
 const [articlesPanier, setArticlesPanier] = useState([]);
+
 
 const calcQuantity = (id) => {
     axios
@@ -74,11 +77,13 @@ const calcQuantity = (id) => {
       <Header articlesPanier={articlesPanier} setArticlesPanier={setArticlesPanier}  calcQuantity={calcQuantity} orderId={orderId} setOrderId={setOrderId} calcPrice={calcPrice} countItem={countItem} setCountItem={setCountItem} price={price} setPrice={setPrice} noItems={noItems} setNoItems={setNoItems} result={result} setResult={setResult}/>
       <BreadcrumbsComponent navigation={location} />
       <div className="carrousel">
-        <MCarousel  width="100%" height="100%"/>
+          <MCarousel  width="100%" height="100%"/>
       </div>
-      <Box padding={10}>
+      
+      <Box padding={2}/>
         <Table articlesPanier={articlesPanier} setArticlesPanier={setArticlesPanier}  calcQuantity={calcQuantity} orderId={orderId} setOrderId={setOrderId} calcPrice={calcPrice} countItem={countItem} setCountItem={setCountItem} price={price} setPrice={setPrice} noItems={noItems} setNoItems={setNoItems} result={result} setResult={setResult}></Table>
-      </Box>
+      
+      <Box padding={2}/>
       <Footer />
     </div>
   );
