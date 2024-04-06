@@ -187,9 +187,9 @@ export default function BasicTable({ articlesPanier, setArticlesPanier, calcQuan
         </TableHead>
         <TableBody>
           {/* Map infini ici pour le back */}
-          {articles.map((article) => (
+          {articles.map((article, index) => (
             <TableRow
-              key={article.name}
+              key={index}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               className='lepainperdu'
               onMouseMove={(e) => {

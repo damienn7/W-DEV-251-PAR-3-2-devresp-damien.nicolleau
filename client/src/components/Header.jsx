@@ -249,7 +249,7 @@ export default function PrimarySearchAppBar({ articlesPanier,setArticlesPanier,c
 
   function handleItems() {
     axios
-      .get(`http://localhost:8000/api/order/by/${localStorage.getItem("id")}`)
+      .get(`http://localhost:8000/api/order/by/${JSON.parse(localStorage.getItem('user')).id}`)
       .then((response) => {
         if (response.data.length >= 1) {
           setArticlesPanier(response.data);
