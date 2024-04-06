@@ -47,7 +47,7 @@ export default function BasicTable({ articlesPanier, setArticlesPanier, calcQuan
   useEffect(() => {
     fetchUserData()
     fetchImages();
-  }
+  })
 
   // const fetchRating = (id_article) => {
   //   fetch(`http://127.0.0.1:8000/api/ratingavg/${id_article}`)
@@ -174,6 +174,7 @@ export default function BasicTable({ articlesPanier, setArticlesPanier, calcQuan
     }
   }
   return (
+    <>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -187,9 +188,9 @@ export default function BasicTable({ articlesPanier, setArticlesPanier, calcQuan
         </TableHead>
         <TableBody>
           {/* Map infini ici pour le back */}
-          {articles.map((article, index) => (
+          {articles.map((article) => (
             <TableRow
-              key={index}
+              key={article.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               className='lepainperdu'
               onMouseMove={(e) => {
@@ -221,7 +222,6 @@ export default function BasicTable({ articlesPanier, setArticlesPanier, calcQuan
           ))}
         </TableBody>
       </Table>
-      
       <div
                 style={{
                   position: 'fixed',
@@ -234,6 +234,7 @@ export default function BasicTable({ articlesPanier, setArticlesPanier, calcQuan
                   <img src={hoveredArticle.image} alt={hoveredArticle.name} loading="lazy" style={{ width: '300px', height: 'auto' }} />
                 )}
               </div>
-    </TableContainer>
+    < TableContainer />
+      </>
   );
 }
