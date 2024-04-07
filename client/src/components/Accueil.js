@@ -10,9 +10,6 @@ import BreadcrumbsComponent from "./breadcrumbs";
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 
-// import {result,noItems,price,countItem,orderId,articlesPanier,setResult,setNoItems,setPrice,setCountItem,setOrderId,setArticlesPanier,calcPrice,calcQuantity} from './StatePanier';
-
-
 function Accueil() {
   const location = useLocation();
 
