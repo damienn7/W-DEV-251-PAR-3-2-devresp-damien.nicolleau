@@ -31,7 +31,7 @@ export default function BasicTable({ articlesPanier, setArticlesPanier, calcQuan
         return response.json()
       })
       .then(data => {
-        setArticles(data)
+        setArticles(data.slice(0, 20))
       })
   }
 
@@ -47,22 +47,8 @@ export default function BasicTable({ articlesPanier, setArticlesPanier, calcQuan
   useEffect(() => {
     fetchUserData()
     fetchImages();
-  })
-
-  // const fetchRating = (id_article) => {
-  //   fetch(`http://127.0.0.1:8000/api/ratingavg/${id_article}`)
-  //     .then(response => {
-  //       return response.json()
-  //     })
-  //     .then(data => {
-  //       setRating(data)
-  //     })
-  // }
-
-  // useEffect(() => {
-  //   fetchRating()
-  // }, [])
-
+  }, [])
+  
   function isAvailable(quantite = 0) {
     if (quantite > 0) {
       return <div className='greenbox'></div>
@@ -116,18 +102,6 @@ export default function BasicTable({ articlesPanier, setArticlesPanier, calcQuan
     else if (!rank) {
       return "?"
     }
-  }
-
-  function vuePanier(user_id) {
-    axios
-      .get(`http://localhost:8000/api/order/by/${user_id}`)
-      .then((response) => {
-        console.log('Articles présents dans le panier : ', response.data);
-      })
-      .catch((error) => {
-        console.error('Erreur aucun article dans le panier : ', error.response.data);
-      });
-    // e.target.parentElement.parentElement.querySelector("#outlined-number-"+item_id).value = 1;
   }
 
   function handlePanier(e, item, item_id, quantite) {
@@ -187,7 +161,6 @@ export default function BasicTable({ articlesPanier, setArticlesPanier, calcQuan
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* Map infini ici pour le back */}
           {articles.map((article) => (
             <TableRow
               key={article.name}
@@ -196,15 +169,10 @@ export default function BasicTable({ articlesPanier, setArticlesPanier, calcQuan
               onMouseMove={(e) => {
                 setMousePosition({ x: e.clientX, y: e.clientY });
               }}
-              // onMouseLeave={() => {
-              //   setHoveredArticle(null);
-              //   setMousePosition({ x: 0, y: 0 });
-              // }}
             >
               <TableCell onMouseEnter={() => setHoveredArticle(article)} onMouseLeave={() => setHoveredArticle(null)} component="th" onClick={() => window.location.href = `/articles/search/${article.category}/${article.sub_category}/${article.idefix}`} scope="row">{istop3(article.name)}</TableCell>
               <TableCell align="right" onClick={() => window.location.href = `/articles/search/${article.category}/${article.sub_category}/${article.idefix}`}>{article.sub_category}</TableCell>
               <TableCell align="right" onClick={() => window.location.href = `/articles/search/${article.category}/${article.sub_category}/${article.idefix}`}>
-                {/* {random()}/5 */}
                 {isthistheblood(article.avgRating)}/5
 
               </TableCell>
