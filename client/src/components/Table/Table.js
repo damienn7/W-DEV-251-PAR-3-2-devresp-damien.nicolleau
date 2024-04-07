@@ -31,7 +31,7 @@ export default function BasicTable({ articlesPanier, setArticlesPanier, calcQuan
         return response.json()
       })
       .then(data => {
-        setArticles(data)
+        setArticles(data.slice(0, 20))
       })
   }
 
