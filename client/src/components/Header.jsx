@@ -177,7 +177,7 @@ export default function PrimarySearchAppBar({ articlesPanier,setArticlesPanier,c
               <img
                 src={article.image}
                 className="search__image"
-                alt="product"
+                alt={"product"}
               />
               <p>{article.name}</p>
               <p align="right">{" "+article.price}€</p>
